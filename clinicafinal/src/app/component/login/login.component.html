@@ -1,0 +1,24 @@
+<div class="login d-flex justify-content-center">
+    <form [formGroup]="form" (ngSubmit)="ingresar()">
+        <div class="mb-3">
+            <label for="exampleInputEmail1" class="form-label">Email</label>
+            <input type="email" class="form-control" formControlName="email" id="exampleInputEmail1" aria-describedby="emailHelp">
+        </div>
+        <div class="mb-3">
+            <label for="exampleInputPassword1" class="form-label">Contraseña</label>
+            <input type="password" class="form-control" formControlName="password" id="exampleInputPassword1">
+        </div>
+        <div class="d-flex column justify-content-center">
+            <button type="submit" class="btn btn-primary">Conectar</button>
+        </div>
+        <div class="d-flex column justify-content-center m-2">
+            <button type="submit" class="btn btn-primary" (click)="inicioRapido()">Inicio Rapido</button>
+        </div>
+        <div>
+            <label for="">{{this.mensajeError}}</label>
+        </div>
+        <div class="spinner-border justify-content-center" role="status" *ngIf="this.muestroSpiner">
+            <span class="visually-hidden">Loading...</span>
+        </div>
+    </form>
+</div>

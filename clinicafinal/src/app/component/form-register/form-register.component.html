@@ -1,0 +1,80 @@
+<form [formGroup]="form" (ngSubmit)="aceptar()" class="text-center">  
+    <div class="mb-3">
+        <label for="nombre" class="form-label">Nombre</label>
+        <input type="text" formControlName="nombre" class="form-control" id="nombre" required>
+
+        <div *ngIf="nombre?.invalid && (nombre?.dirty || nombre?.touched)" class="alert alert-danger">
+            <div *ngIf="nombre?.errors?.['required']">
+                Nombre es requerido.
+            </div>
+            <div *ngIf="nombre?.errors?.['minlength']">
+                Nombre minimo 3 caracteres.
+            </div>
+        </div>
+
+        <label for="apellido" class="form-label">Apellido</label>
+        <input type="text" formControlName="apellido" class="form-control" id="apellido">
+
+        <div *ngIf="apellido?.invalid && (apellido?.dirty || apellido?.touched)" class="alert alert-danger">
+            <div *ngIf="apellido?.errors?.['required']">
+                Apellido es requerido.
+            </div>
+            <div *ngIf="apellido?.errors?.['minlength']">
+                Apellido minimo 3 caracteres.
+            </div>
+        </div>
+    </div>
+    <div class="mb-3">
+        <label for="edad" class="form-label">edad</label>
+        <input type="number" formControlName="edad" class="form-control" id="edad">
+
+        <label for="dni" class="form-label">dni</label>
+        <input type="number" formControlName="dni" class="form-control" id="dni">
+    </div>
+    <div class="mb-3">
+        <div>
+            <label for="obrasocial" class="form-label">obrasocial</label>
+            <input type="text" formControlName="obrasocial" class="form-control" id="obrasocial">
+
+            <div *ngIf="obrasocial?.invalid && (obrasocial?.dirty || obrasocial?.touched)" class="alert alert-danger">
+                <div *ngIf="obrasocial?.errors?.['required']">
+                    Obra Social es requerido.
+                </div>
+                <div *ngIf="obrasocial?.errors?.['minlength']">
+                    Obra Social minimo 3 caracteres.
+                </div>
+            </div>
+
+        </div>
+        <label for="mail" class="form-label">mail</label>
+        <input type="email" formControlName="mail" class="form-control" id="mail">
+
+        <div *ngIf="mail?.invalid && (mail?.dirty || mail?.touched)" class="alert alert-danger">
+            <div *ngIf="mail?.errors?.['required']">
+                Email es requerido.
+            </div>
+            <div *ngIf="mail?.errors?.['minlength']">
+                Emial minimo 10 caracteres.
+            </div>
+        </div>
+    </div>
+    <div class="mb-3">
+        <label for="password" class="form-label">password</label>
+        <input type="password" formControlName="password" class="form-control" id="password">
+
+        <div>
+            <label for="imagen1" class="form-label">imagen uno</label>
+            <input type="file" formControlName="imagenuno" class="form-control" id="imagen1">
+        </div>
+    </div>
+    <div class="mb-3">
+        <label for="imagen2" class="form-label">imagen dos</label>
+        <input type="file" formControlName="imagendos" class="form-control" id="imagen2">
+    </div>
+    <button type="submit" class="btn btn-primary">Enviar</button>
+    <label id="errorLogin" for=""></label>
+</form>
+
+<div class="d-flex justify-content-center pop" *ngIf="this.seRegistroOk">
+    <p>Verifique su email para activar la cuenta</p>
+</div>

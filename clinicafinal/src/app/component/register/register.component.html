@@ -1,0 +1,43 @@
+<div class="register d-flex justify-content-center">
+
+    <div class="container d-flex row justify-content-center m-3" *ngIf="!this.mostrarRegister">
+        <div class="card m-2">
+            <div class="card-header">
+                Pacientes
+            </div>
+            <div class="card-body">
+                <button class="btn btn-primary" (click)="this.mostrarRegister = true; this.tipo = 'paciente'">Paciente</button>
+                <p>de salud de paciente</p>
+            </div>
+        </div>
+        <div class="card m-2">
+            <div class="card-header">
+                Especialistas
+            </div>
+            <div class="card-body">
+                <button class="btn btn-primary" (click)="this.mostrarRegister = true; this.tipo = 'especialista'">Especialidad</button>
+                <p>Intranet para el personal del hospital</p>
+            </div>
+        </div>
+        <div class="card m-2">
+            <div class="card-header">
+                Administradores
+            </div>
+            <div class="card-body">
+                <button class="btn btn-primary" (click)="this.tipo = 'admin'; this.mostrarRegister = true" >Administrador</button>
+                <p>Intranet para el personal del hospital</p>
+            </div>
+        </div>
+    </div>
+
+    <div *ngIf="this.tipo == 'admin'">
+        <app-form-register-admin></app-form-register-admin>
+    </div>
+    <div *ngIf="this.tipo == 'paciente'">
+        <app-form-register></app-form-register>
+    </div>
+    <div *ngIf="this.tipo == 'especialista'">
+        <app-form-register-especialista></app-form-register-especialista>
+    </div>
+
+</div>

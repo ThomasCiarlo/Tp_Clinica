@@ -6,14 +6,19 @@
             <span class="navbar-toggler-icon"></span>
         </button>
 
-        <div class="collapse navbar-collapse justify-content-center" id="navbarNav" *ngIf="this.estaLogeado">
+        <div class="d-flex justify-content-center">
             <ul class="navbar-nav">
                 <li class="nav-item">
                     <a class="nav-link" [routerLink]="['usuarios']">Usuarios</a>
                 </li>              
             </ul>           
+            <ul class="navbar-nav">
+                <li class="nav-item">
+                    <a class="nav-link" [routerLink]="['pacientes']">Turnos</a>
+                </li>              
+            </ul>
         </div>
-
+        
         <div class="collapse navbar-collapse justify-content-end" id="navbarNav" *ngIf="!this.estaLogeado">
             <ul class="navbar-nav">
                 <li class="nav-item">

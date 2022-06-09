@@ -9,7 +9,8 @@ export class Usuario {
         public mail!: string;
         public password!: string;
         public imagenes!: string[];
-        public especialidad!: File[];
+        public especialidad!: string;
         public tipo!: string;
         public habilitado!: boolean;
+        public franjaHoraria!: number[];
 }

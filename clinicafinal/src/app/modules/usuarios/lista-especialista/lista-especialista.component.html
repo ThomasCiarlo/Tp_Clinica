@@ -1,0 +1,27 @@
+<div class="d-flex row justify-content-center" *ngIf="this.cargando">
+  cargando
+</div>
+
+<div class="d-flex column justify-content-center" *ngIf="!this.cargando">
+<table class="table border border-4">
+    <thead>
+      <tr>
+        <th scope="col">Nombre</th>
+        <th scope="col">Apellido</th>
+        <th scope="col">Email</th>
+        <th scope="col">Especialidad</th>
+        <th scope="col">Opcion</th>
+      </tr>
+    </thead>
+    <tbody *ngFor="let item of this.ListaUsuarios">
+      <tr>
+        <td>{{item.nombre}}</td>
+        <td>{{item.apellido}}</td>
+        <td>{{item.mail}}</td>
+        <td>{{item.especialidad}}</td>
+        <td *ngIf="item.habilitado"><button class="btn btn-danger" (click)="this.cambiarEstado(item)">Deshabilitar</button></td>
+        <td *ngIf="!item.habilitado"><button class="btn btn-success" (click)="this.cambiarEstado(item)">Habilitar</button></td>
+      </tr>
+    </tbody>
+  </table>
+</div>

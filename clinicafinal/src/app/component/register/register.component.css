@@ -4,3 +4,27 @@
     max-height: 900px;
     margin: 0 auto;
 }
+
+
+.btnPaciente
+{
+        background-image:url('./../../../assets/img/btnpaciente.png');
+        background-repeat:no-repeat;
+        height:60px;
+        width:70px;
+        background-size: 50px 50px;
+        background-position:center;
+}
+
+.btnEspecialista
+
+{
+        background-image:url('./../../../assets/img/imgbtndoc.png');
+        background-repeat:no-repeat;
+        height:60px;
+        width:70px;
+        background-size: 50px 50px;
+        background-position:center;
+}
+
+

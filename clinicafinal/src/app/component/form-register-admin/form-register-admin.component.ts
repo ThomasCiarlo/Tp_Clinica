@@ -52,7 +52,8 @@ export class FormRegisterAdminComponent implements OnInit {
     if (errorlbl != null)
       this.serviceLogin.registrar(this.user.mail, this.user.password)
         .then((res) => {
-          this.serviceRegister.createAdministrador(this.user.mail, this.user);
+          this.serviceRegister.createUsuario(this.user);
+          this.serviceRegister.createAdministrador(this.user.mail, this.user);          
           this.seRegistroOk = true;
           this.form.reset();
         }).catch(err =>

@@ -10,8 +10,8 @@ export class FirebaseloginService {
 
   constructor(public afAuth: AngularFireAuth) { }
 
-  async login(email: string, password: string) {
-    return await this.afAuth.signInWithEmailAndPassword(email, password);
+  login(email: string, password: string) {
+    return this.afAuth.signInWithEmailAndPassword(email, password);
   }
 
   async registrar(email: string, password: string) {
@@ -20,9 +20,8 @@ export class FirebaseloginService {
     return `Check your email for verification mail before logging in`;
   }
 
-  public async singOut() {
-    const user = this.afAuth.signOut();
-    return this.Logueado;
+  async singOut() {
+    this.afAuth.signOut();
   }
 
   async Logueado() {

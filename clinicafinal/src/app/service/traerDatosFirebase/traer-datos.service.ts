@@ -4,6 +4,9 @@ import { Usuario } from 'src/app/entidades/usuario/usuario';
 import { Observable } from 'rxjs';
 import { delay, first, map } from 'rxjs/operators';
 import { FirebaseloginService } from '../firebaselogin/firebaselogin.service';
+import { Turno } from 'src/app/entidades/turno/turno';
+import { AngularFireStorage } from '@angular/fire/compat/storage';
+import { getDownloadURL, getStorage, ref } from "firebase/storage";
 
 @Injectable({
   providedIn: 'root'
@@ -14,7 +17,7 @@ export class TraerDatosService {
   datosEspecialistaConectado!: Usuario;
   emailUsuario?: any;
 
-  constructor(public db: AngularFirestore, private serciceLogin: FirebaseloginService) {
+  constructor(public db: AngularFirestore, private serciceLogin: FirebaseloginService,public storage: AngularFireStorage) {
 
   }
 
@@ -33,19 +36,25 @@ export class TraerDatosService {
     });
   }
 
- async filtrarPorMailEspecialista(mail: string)
+ filtrarPorMailEspecialista(mail: string)
   {
-    (await this.getAllEspecialista()).subscribe((data: Usuario[]) => {
-      let aux = data.find(user => user.mail === mail);
-      console.log(aux);
-      if (aux) {
-        // console.log('jugador existente');
-       this.datosEspecialistaConectado = aux;
-      }
-    });
+    return this.getAllEspecialista();
   }
 
-  async getAllEspecialista(){
+  getAllPacientes(){
+    return this.db.collection('paciente')
+      .snapshotChanges()
+      .pipe(map(snaps => {
+        return snaps.map(snap => {
+          return <Usuario>{
+            id: snap.payload.doc.id,
+            ...snap.payload.doc.data() as any
+          }
+        })
+      }));
+  }
+
+  getAllEspecialista(){
     return this.db.collection('especialista')
       .snapshotChanges()
       .pipe(map(snaps => {
@@ -56,7 +65,10 @@ export class TraerDatosService {
           }
         })
       }));
+  }
 
+  actualizarEspecialista(usuario :Usuario) {
+    return this.db.collection('especialista').doc( usuario.id ).set( usuario ); 
   }
 
 
@@ -86,7 +98,7 @@ export class TraerDatosService {
     });
   }
 
-  async getAllAdministradores(){
+  getAllAdministradores(){
     return this.db.collection('administradores')
       .snapshotChanges()
       .pipe(map(snaps => {
@@ -100,4 +112,33 @@ export class TraerDatosService {
 
   }
 
+  async getAll()
+  {
+  
+     return this.db.collection('usuarios')
+      .snapshotChanges()
+      .pipe(map(snaps => {
+        return snaps.map(snap => {
+          return <Usuario>{
+            id: snap.payload.doc.id,
+            ...snap.payload.doc.data() as any
+          }
+        })
+      }));
+  }
+
+  async traerTurnosDoc(idEspecialista: string,dia:number) : Promise<Observable<Turno[]>>
+  {
+     return this.db.collection<Turno>('turnos', ref => ref.where('idEspecialista', '==' ,idEspecialista).where('dia','>=',dia)).valueChanges();
+  }
+
+  traerImagenes(email: string)
+  {
+    const storage = getStorage();
+    let url;
+    return getDownloadURL(ref(storage, email+'/0.jpg'));
+
+  }
+
 }
+

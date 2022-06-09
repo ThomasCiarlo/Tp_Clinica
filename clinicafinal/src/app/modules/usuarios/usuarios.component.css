@@ -1,0 +1,9 @@
+.container
+{
+    margin: 0 auto;
+}
+
+.card
+{
+    max-width: 500px;
+}

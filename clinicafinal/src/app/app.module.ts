@@ -13,10 +13,12 @@ import { environment } from 'src/environments/environment';
 import { FormRegisterComponent } from './component/form-register/form-register.component';
 
 import { FormGroup, FormBuilder, ReactiveFormsModule } from '@angular/forms';
-import { UsuariosComponent } from './component/usuarios/usuarios.component';
 import { HomeComponent } from './component/home/home.component';
 import { FormRegisterAdminComponent } from './component/form-register-admin/form-register-admin.component';
 import { FormRegisterEspecialistaComponent } from './component/form-register-especialista/form-register-especialista.component';
+import { LoadingComponent } from './component/loading/loading.component';
+import { NoopAnimationsModule } from '@angular/platform-browser/animations';
+import { CaptchatComponent } from './component/captchat/captchat.component';
 
 @NgModule({
   declarations: [
@@ -25,10 +27,12 @@ import { FormRegisterEspecialistaComponent } from './component/form-register-esp
     LoginComponent,
     RegisterComponent,
     FormRegisterComponent,
-    UsuariosComponent,
     HomeComponent,
     FormRegisterAdminComponent,
-    FormRegisterEspecialistaComponent
+    FormRegisterEspecialistaComponent,
+    LoadingComponent,
+    CaptchatComponent,    
+    
   ],
   imports: [
     BrowserModule,
@@ -36,6 +40,7 @@ import { FormRegisterEspecialistaComponent } from './component/form-register-esp
     AngularFireModule.initializeApp(environment.firebaseConfig),
     AngularFireAuthModule,
     ReactiveFormsModule,
+    NoopAnimationsModule,
   ],
   providers: [],
   bootstrap: [AppComponent]

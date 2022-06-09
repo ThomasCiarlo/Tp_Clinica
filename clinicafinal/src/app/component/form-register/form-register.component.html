@@ -1,4 +1,4 @@
-<form [formGroup]="form" (ngSubmit)="aceptar()" class="text-center">  
+<form [formGroup]="form" (ngSubmit)="aceptar()" class="text-center" *ngIf="!this.seRegistroOk">  
     <div class="mb-3">
         <label for="nombre" class="form-label">Nombre</label>
         <input type="text" formControlName="nombre" class="form-control" id="nombre" required>
@@ -64,16 +64,20 @@
 
         <div>
             <label for="imagen1" class="form-label">imagen uno</label>
-            <input type="file" formControlName="imagenuno" class="form-control" id="imagen1">
+            <input type="file" formControlName="imagenuno" class="form-control" id="imagen1" (change)="this.UploadImag($event)">
         </div>
     </div>
     <div class="mb-3">
         <label for="imagen2" class="form-label">imagen dos</label>
-        <input type="file" formControlName="imagendos" class="form-control" id="imagen2">
+        <input type="file" formControlName="imagendos" class="form-control" id="imagen2" (change)="this.UploadImagDos($event)">
     </div>
     <button type="submit" class="btn btn-primary">Enviar</button>
     <label id="errorLogin" for=""></label>
 </form>
+
+<div class="d-flex justify-content-center pop" *ngIf="this.cargando">
+    <app-loading></app-loading>
+</div>
 
 <div class="d-flex justify-content-center pop" *ngIf="this.seRegistroOk">
     <p>Verifique su email para activar la cuenta</p>

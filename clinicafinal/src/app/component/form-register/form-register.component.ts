@@ -15,6 +15,9 @@ export class FormRegisterComponent implements OnInit {
   public form!: FormGroup;
   public user!: Usuario;
   public seRegistroOk = false;
+  private imgUno: any;
+  private imgdos: any;
+  public cargando: boolean = false;
 
   constructor(public fb: FormBuilder, public serviceLogin: FirebaseloginService,
     public serviceRegister: FirebaseregisterService) { }
@@ -27,14 +30,16 @@ export class FormRegisterComponent implements OnInit {
       'edad': [0, [Validators.required]],
       'dni': [0, [Validators.required]],
       'obrasocial': ['', Validators.compose([Validators.required, Validators.minLength(3), Validators.maxLength(15)])],
-      'mail': ['', Validators.compose([Validators.required, Validators.minLength(3), Validators.maxLength(100)])],
-      'password': ['', Validators.compose([Validators.required, Validators.minLength(3), Validators.maxLength(15)])],
-      'imagenuno': ['', Validators.nullValidator],
-      'imagendos': ['', Validators.nullValidator],
+      'mail': ['asd123@gmail.com', Validators.compose([Validators.required, Validators.minLength(3), Validators.maxLength(100)])],
+      'password': ['123456', Validators.compose([Validators.required, Validators.minLength(3), Validators.maxLength(15)])],
+      'imagenuno': new FormControl(Image,[Validators.required]),
+      'imagendos': new FormControl(Image,[Validators.required]),
     });
   }
 
   aceptar() {
+
+    this.cargando = true;
 
     const { nombre, apellido, edad, dni, obrasocial, password, mail, imagenuno, imagendos } = this.form.value;
     this.user = new Usuario();
@@ -46,19 +51,33 @@ export class FormRegisterComponent implements OnInit {
     this.user.obraSocial = obrasocial;
     this.user.password = password;
     this.user.mail = mail;
-    this.user.imagenes = [imagenuno, imagendos];
+    console.log(imagenuno);
+    this.user.imagenes = [this.imgUno, this.imgdos];
     this.user.tipo = 'paciente';
 
     const errorlbl = document.getElementById("errorLogin");
     if (errorlbl != null)
       this.serviceLogin.registrar(this.user.mail, this.user.password)
         .then((res) => {
+          this.serviceRegister.createUsuario(this.user);
           this.serviceRegister.createPaciente(this.user.mail, this.user);
           this.seRegistroOk = true;
+          this.cargando = false;
           this.form.reset();
         }).catch(err =>
           errorlbl.textContent = err.message)
+  }
 
+  UploadImag(event: any)
+  {
+    this.imgUno = event?.target.files[0];
+    console.log(this.imgUno);
+  }
+
+  UploadImagDos(event: any)
+  {
+    this.imgdos = event?.target.files[0];
+    console.log(this.imgdos);
   }
 
   get nombre() { return this.form.get('nombre'); }

@@ -1,0 +1,30 @@
+table
+{
+    max-width: 200px;
+    max-height: 200px;
+    font-size: 10px;
+}
+
+table tr td{
+    width: 20px;
+    height: 20px;
+}
+
+table tr{
+    text-align: center;
+}
+
+button
+{
+    width: 40px;
+    height: 30px;
+    font-size: 10px;
+    text-align: center;
+}
+
+.container
+{
+    width: 500px;
+    height: 300px;
+    overflow:auto;
+}

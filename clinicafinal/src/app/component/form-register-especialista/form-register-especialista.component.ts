@@ -15,6 +15,8 @@ export class FormRegisterEspecialistaComponent implements OnInit {
   public form!: FormGroup;
   public user!: Usuario;
   public seRegistroOk = false;
+  private imgUno: any;
+  public cargando: boolean = false;
 
   constructor(public serviceEspecialidad: EspecialidadesService, public fb: FormBuilder, public serviceLogin: FirebaseloginService,
     public serviceRegister: FirebaseregisterService) { }
@@ -44,7 +46,7 @@ export class FormRegisterEspecialistaComponent implements OnInit {
     this.user.password = password;
     this.user.mail = mail;
     this.user.especialidad = this.form.value.especialidad;
-    this.user.imagenes = [imagenuno];
+    this.user.imagenes = [this.imgUno];
     this.user.tipo = 'especialista';
     this.user.habilitado = false;
 
@@ -52,12 +54,19 @@ export class FormRegisterEspecialistaComponent implements OnInit {
     if (errorlbl != null)
       this.serviceLogin.registrar(this.user.mail, this.user.password)
         .then((res) => {
+          this.serviceRegister.createUsuario(this.user);
           this.serviceRegister.createEspecialista(this.user.mail, this.user);
           this.seRegistroOk = true;
           this.form.reset();
         }).catch(err =>
           errorlbl.textContent = err.message)
 
+  }
+
+  UploadImag(event: any)
+  {
+    this.imgUno = event?.target.files[0];
+    console.log(this.imgUno);
   }
 
   get nombre() { return this.form.get('nombre'); }

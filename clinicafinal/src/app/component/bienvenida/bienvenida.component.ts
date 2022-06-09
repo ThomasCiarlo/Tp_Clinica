@@ -2,6 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { AdminGuard } from 'src/app/guards/admin/admin.guard';
 import { FirebaseloginService } from 'src/app/service/firebaselogin/firebaselogin.service';
 import { Observable } from 'rxjs';
+import { Usuario } from 'src/app/entidades/usuario/usuario';
+import { TraerDatosService } from 'src/app/service/traerDatosFirebase/traer-datos.service';
 
 @Component({
   selector: 'app-bienvenida',
@@ -13,22 +15,34 @@ export class BienvenidaComponent implements OnInit {
   login = false;
   register = false;
   estaLogeado: boolean = false;
-  usuarioConectado$: Observable<any> = this.loginservice.afAuth.user;
+  email: string = '';
+  usuarioConectado: Usuario = new Usuario();
+  usuario: Observable<any> = this.loginservice.afAuth.user;
 
-  constructor(public loginservice: FirebaseloginService,public guardAdmin: AdminGuard) { }
+  constructor(public loginservice: FirebaseloginService,public serviceDatos: TraerDatosService) 
+  {    
+  }
 
-
-
-  ngOnInit(): void {
-    this.usuarioConectado$.subscribe(usuario => {
-      this.estaLogeado = (usuario) ? true : false;
-      console.log(this.estaLogeado);
-    });
+  ngOnInit(): void {    
+      this.usuario.subscribe(usuario => {
+        this.estaLogeado = (usuario) ? true : false;
+      })
   }
 
   Desloguear()
   {    
-    const user = this.loginservice.singOut();
+    const x = this.loginservice.singOut();
+  }
+
+  async traerUsuario()
+  {
+    return (await this.serviceDatos.getAll()).subscribe(users =>{
+      let x = users.find(user => user.mail == this.email)
+        if(x != null){
+          this.usuarioConectado = x
+          this.estaLogeado = true;
+        }
+      });
   }
 
 }

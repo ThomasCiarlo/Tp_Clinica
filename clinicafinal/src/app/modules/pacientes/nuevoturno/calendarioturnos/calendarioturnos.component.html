@@ -1,0 +1,16 @@
+<div class="container">
+<table class="table">
+    <thead>
+      <tr>
+        <th scope="col" *ngFor="let disponibilidad of this.disponibilidad">{{disponibilidad.dia}}</th>
+      </tr>
+    </thead>
+    <tbody>
+      <th *ngFor="let dis of this.disponibilidad">
+      <tr *ngFor="let hora of dis.horarios">
+        <td scope="col"><button  class="btn btn-info" (click)="this.TomarHorarioYDia(dis.dia,hora)">{{hora}}</button></td>
+      </tr>
+    </th>
+    </tbody>
+  </table>
+</div>

@@ -98,6 +98,7 @@ export class LoginComponent implements OnInit {
   {
     let i = 0;
     this.arrayUsuario = [];
+    this.muestroSpiner = true;
     this.serviceTraerDatos.getAllEspecialista().subscribe(users =>{
        users.forEach(user =>{
           user.imagenes = [];
@@ -107,6 +108,7 @@ export class LoginComponent implements OnInit {
           this.arrayEspecialista.push(user);
           i++;
        })
+       this.muestroSpiner = false;
     })
   }
 

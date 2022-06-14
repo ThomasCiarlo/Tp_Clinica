@@ -20,6 +20,8 @@ import { LoadingComponent } from './component/loading/loading.component';
 import { NoopAnimationsModule } from '@angular/platform-browser/animations';
 import { CaptchatComponent } from './component/captchat/captchat.component';
 
+import { FormsModule } from '@angular/forms';
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -31,7 +33,7 @@ import { CaptchatComponent } from './component/captchat/captchat.component';
     FormRegisterAdminComponent,
     FormRegisterEspecialistaComponent,
     LoadingComponent,
-    CaptchatComponent,    
+    CaptchatComponent,
     
   ],
   imports: [
@@ -41,6 +43,7 @@ import { CaptchatComponent } from './component/captchat/captchat.component';
     AngularFireAuthModule,
     ReactiveFormsModule,
     NoopAnimationsModule,
+    FormsModule,
   ],
   providers: [],
   bootstrap: [AppComponent]

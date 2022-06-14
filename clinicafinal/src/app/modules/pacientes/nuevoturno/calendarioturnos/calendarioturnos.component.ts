@@ -30,6 +30,8 @@ export class CalendarioturnosComponent implements OnInit {
     const turno = new Turno();
     turno.dia = dia;
     turno.horario = hora;
+    let x = new Date();
+    turno.mes = x.getMonth();
 
     this.nuevoTurno.emit(turno);
   }

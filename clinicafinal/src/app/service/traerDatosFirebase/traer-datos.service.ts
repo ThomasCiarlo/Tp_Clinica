@@ -132,6 +132,11 @@ export class TraerDatosService {
      return this.db.collection<Turno>('turnos', ref => ref.where('idEspecialista', '==' ,idEspecialista).where('dia','>=',dia)).valueChanges();
   }
 
+  async traerTurnosPaciente(idpaciente: string) : Promise<Observable<Turno[]>>
+  {
+     return this.db.collection<Turno>('turnos', ref => ref.where('idPaciente', '==' ,idpaciente)).valueChanges();
+  }
+
   traerImagenes(email: string)
   {
     const storage = getStorage();

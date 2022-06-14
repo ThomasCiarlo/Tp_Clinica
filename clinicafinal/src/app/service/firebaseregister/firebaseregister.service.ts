@@ -96,11 +96,15 @@ export class FirebaseregisterService {
   createTurno(turo: Turno) {
     this.db.collection('turnos').doc(this.db.createId()).set({
       dia: turo.dia,
+      mes: turo.mes,
       horario: turo.horario,
       especialidad: turo.especialidad,
-      estado: 'falta',
+      estado: 'PENDIENTE',
       idEspecialista: turo.idEspecialista,
-      idPaciente: turo.idPaciente
+      idPaciente: turo.idPaciente,
+      nombreApellidoEspecialista: turo.nombreApellidoEspecialista,
+      comentario: "",
+      calificacion: 0
     });
   }
 }

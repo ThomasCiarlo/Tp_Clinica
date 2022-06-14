@@ -69,7 +69,7 @@ export class NuevoturnoComponent implements OnInit {
     let disponibilidad = new Disponibilidad();
     this.arrayDisponibilidad = [];
     let x = new Date();   
-    for (let dia = x.getDate(); dia <= x.getDate() + 15; dia++) {
+    for (let dia = x.getDate() + 1; dia <= x.getDate() + 15; dia++) {
         disponibilidad = new Disponibilidad();
         disponibilidad.dia = dia;
         for (let hora = this.especialistaSeleccionado.franjaHoraria[0]; hora <= this.especialistaSeleccionado.franjaHoraria[1]; hora++) {
@@ -99,6 +99,7 @@ export class NuevoturnoComponent implements OnInit {
     this.turnoNuevo = turno;
     this.turnoNuevo.especialidad = this.especialistaSeleccionado.especialidad;
     this.turnoNuevo.idEspecialista = this.especialistaSeleccionado.id;
+    this.turnoNuevo.nombreApellidoEspecialista = this.especialistaSeleccionado.nombre + " " + this.especialistaSeleccionado.apellido
     this.serviceLogin.getCurrentUser().then(user =>{
       if(user?.uid != undefined)
         this.turnoNuevo.idPaciente = user?.uid;

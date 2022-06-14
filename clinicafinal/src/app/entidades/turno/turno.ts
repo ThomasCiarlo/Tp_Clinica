@@ -7,4 +7,6 @@ export class Turno {
     estado: string = '';
     idEspecialista: string = '';
     idPaciente: string = '';
+    nombreApellidoEspecialista: string = '';
+    comentario: string = '';
 }

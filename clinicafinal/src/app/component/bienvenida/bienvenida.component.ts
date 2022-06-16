@@ -15,34 +15,38 @@ export class BienvenidaComponent implements OnInit {
   login = false;
   register = false;
   estaLogeado: boolean = false;
-  email: string = '';
   usuarioConectado: Usuario = new Usuario();
   usuario: Observable<any> = this.loginservice.afAuth.user;
 
-  constructor(public loginservice: FirebaseloginService,public serviceDatos: TraerDatosService) 
-  {    
+  constructor(public loginservice: FirebaseloginService, public serviceDatos: TraerDatosService) {
   }
 
-  ngOnInit(): void {    
-      this.usuario.subscribe(usuario => {
-        this.estaLogeado = (usuario) ? true : false;
-      })
+  ngOnInit(): void {
+    this.usuario.subscribe(usuario => {
+      this.estaLogeado = (usuario) ? true : false;
+      if (this.estaLogeado) {
+        this.traerUsuario();
+        console.log(this.usuarioConectado.mail);
+      }
+    })
   }
 
-  Desloguear()
-  {    
+  Desloguear() {
     const x = this.loginservice.singOut();
   }
 
-  async traerUsuario()
-  {
-    return (await this.serviceDatos.getAll()).subscribe(users =>{
-      let x = users.find(user => user.mail == this.email)
-        if(x != null){
-          this.usuarioConectado = x
-          this.estaLogeado = true;
-        }
-      });
+  async traerUsuario() {
+    let mail
+    await this.loginservice.getCurrentUser().then(async user => {
+      mail = user?.email;
+      if (user?.email) {
+       (await this.serviceDatos.traertipo(mail!)).subscribe(async (usuarios:Usuario[]) => {
+          console.log(usuarios);
+            (await this.serviceDatos.traerUsuario(usuarios[0].mail,usuarios[0].tipo)).subscribe(user => {
+              this.usuarioConectado = user[0];
+            })
+        })
+      }
+    })
   }
-
 }

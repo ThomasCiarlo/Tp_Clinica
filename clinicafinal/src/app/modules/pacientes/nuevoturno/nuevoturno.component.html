@@ -1,12 +1,9 @@
-<div class="container d-flex justify-content-center flex-column">
-    <div class="d-flex flex-row justify-content-center">
-        <h1>Nuevo turno</h1>
-    </div>
-    <div class="d-flex flex-row justify-content-center">
-        <div class="m-5">
+<div class="container d-flex justify-content-center border border-4">
+    <div class="d-flex flex-row justify-content-center m-2">
+        <div class="m-2">
             <app-formturno (listaDeEspecialistaFiltrada)="tomarLista($event)"></app-formturno>
         </div>
-        <div class="m-5">
+        <div class="m-2">
             <app-list-especialista [ListaUsuarios]="this.listaEspecialistas" (especialistaSeleccionado)="this.tomarEspecialista($event)"></app-list-especialista>
         </div>
     </div>

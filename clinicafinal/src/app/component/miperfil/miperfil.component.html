@@ -1,0 +1,44 @@
+<div class="container">
+    <div *ngIf="this.cargando">
+        <app-loading></app-loading>
+    </div>
+    <div *ngIf="!this.cargando" class="">
+        <div class="cabecera d-flex justify-content-center">
+            <div class="imagenPerfil">
+                <img class="rounded-circle" src="{{this.usuarioConectado.imagenes[0]}}" alt="">
+            </div>
+        </div>
+        <div class="cuerpo flex-sm-wrap d-flex justify-content-center">
+            <label class="fs-6 p-2 text fw-semibold" for="">Nombre: </label>
+            <input type="text" name="" id="" value="{{this.usuarioConectado.nombre}}" disabled="false">
+
+            <label class="fs-6 p-2 text fw-semibold" for="">Apellido: </label>
+            <input type="text" name="" id="" value="{{this.usuarioConectado.apellido}}" disabled="false">
+
+            <label class="fs-6 p-2 text fw-semibold" for="">Email: </label>
+            <input type="text" name="" id="" value="{{this.usuarioConectado.mail}}" disabled="false">
+
+            <div *ngIf="this.usuarioConectado.tipo == 'paciente'">
+                <label class="fs-6 p-2 text fw-semibold" for="">Obra social: </label>
+                <input type="text" name="" id="" value="{{this.usuarioConectado.obraSocial}}" disabled="false">
+            </div>
+
+            <label class="fs-6 p-2 text fw-semibold" for="">Edad: </label>
+            <input type="text" name="" id="" value="{{this.usuarioConectado.edad}}" disabled="false">
+
+            <label class="fs-6 p-2 text fw-semibold" for="">DNI: </label>
+            <input type="text" name="" id="" value="{{this.usuarioConectado.DNI}}" disabled="false">
+        </div>
+        <div class="cargoDisp d-flex flex-column justify-content-center"
+            *ngIf="this.usuarioConectado.tipo == 'especialista'">
+            <label class="fs-6 p-2 text fw-semibold" for="">Desde: </label>
+            <input type="text" [(ngModel)]="this.desde" name="" id="" value="{{this.usuarioConectado.franjaHoraria[0]}}">
+
+            <label class="fs-6 p-2 text fw-semibold" for="">Hasta: </label>
+            <input type="text" [(ngModel)]="this.hasta" name="" id="" value="{{this.usuarioConectado.franjaHoraria[1]}}">
+
+            <button class="btn btn-primary m-2" (click)="this.cambiarDisp()">Modificar disponibilidad</button>
+            <label for="" *ngIf="this.seActualizo">Actualizado correctamente</label>
+        </div>
+    </div>
+</div>

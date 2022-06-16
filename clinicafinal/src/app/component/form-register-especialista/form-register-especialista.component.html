@@ -32,23 +32,17 @@
         <label for="dni" class="form-label">dni</label>
         <input type="number" formControlName="dni" class="form-control" id="dni">
     </div>
-    <div class="mb-3">
-
-        <div *ngIf="obrasocial?.invalid && (obrasocial?.dirty || obrasocial?.touched)" class="alert alert-danger">
-            <div *ngIf="obrasocial?.errors?.['required']">
-                Obra Social es requerido.
-            </div>
-            <div *ngIf="obrasocial?.errors?.['minlength']">
-                Obra Social minimo 3 caracteres.
-            </div>
-        </div>
-
-    </div>
     <div>
         <label for="especialidad" class="form-label">espelicidad</label>
         <div class="form-check form-switch" *ngFor="let esp of this.serviceEspecialidad.especialidades">
-            <input class="form-check-input" type="radio" formControlName="especialidad" role="switch" value="{{esp}}">
-            <label class="form-check-label" for="flexSwitchCheckDefault">{{esp}}</label>
+            <input class="form-check-input" type="radio" formControlName="especialidad" role="switch" value="{{esp.descripcion}}">
+            <label class="form-check-label" for="flexSwitchCheckDefault">{{esp.descripcion}}</label>
+        </div>
+    </div>
+    <div>       
+        <div class="">
+            <label for="especialidad" class="form-label">Otra Especialidad</label>
+            <input class="form-control" type="text" formControlName="nuevaEspecialidad" role="switch">
         </div>
     </div>
 

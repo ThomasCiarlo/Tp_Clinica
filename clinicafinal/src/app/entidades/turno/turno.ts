@@ -1,9 +1,10 @@
 export class Turno {
 
+    id: string = '';
     dia: number = 0;
     mes: number = 0;
     especialidad: string = '';
-    horario: number = 0;
+    horario: string = '';
     estado: string = '';
     idEspecialista: string = '';
     idPaciente: string = '';

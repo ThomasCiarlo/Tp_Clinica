@@ -7,6 +7,8 @@ import { FirebaseloginService } from '../firebaselogin/firebaselogin.service';
 import { Turno } from 'src/app/entidades/turno/turno';
 import { AngularFireStorage } from '@angular/fire/compat/storage';
 import { getDownloadURL, getStorage, ref } from "firebase/storage";
+import { Especialidad } from 'src/app/entidades/especialidad/especialidad';
+
 
 @Injectable({
   providedIn: 'root'
@@ -137,12 +139,26 @@ export class TraerDatosService {
      return this.db.collection<Turno>('turnos', ref => ref.where('idPaciente', '==' ,idpaciente)).valueChanges();
   }
 
+  async traertipo(mail: string): Promise<Observable<Usuario[]>>
+  {
+    return this.db.collection<Usuario>('usuarios', ref => ref.where('mail', '==' ,mail)).valueChanges();
+  }
+
+  async traerUsuario(mail: string,tipo: string): Promise<Observable<Usuario[]>>
+  {
+    return this.db.collection<Usuario>(tipo, ref => ref.where('mail', '==' ,mail)).valueChanges();
+  }
+
+  async traerEspecialidades(): Promise<Observable<Especialidad[]>>
+  {
+    return this.db.collection<Especialidad>('especialidades').valueChanges();
+  }
+
   traerImagenes(email: string)
   {
     const storage = getStorage();
     let url;
     return getDownloadURL(ref(storage, email+'/0.jpg'));
-
   }
 
 }

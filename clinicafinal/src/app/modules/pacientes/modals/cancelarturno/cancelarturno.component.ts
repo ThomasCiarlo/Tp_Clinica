@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Turno } from 'src/app/entidades/turno/turno';
 
 @Component({
   selector: 'app-cancelarturno',
@@ -7,9 +8,20 @@ import { Component, OnInit } from '@angular/core';
 })
 export class CancelarturnoComponent implements OnInit {
 
-  constructor() { }
+  comentario: string = "";
+  turno!: Turno;
+  constructor() 
+  {
+   
+  }
 
   ngOnInit(): void {
+    console.log(this.turno);
+  }
+
+  
+  cancelarTurno()
+  {
   }
 
 }

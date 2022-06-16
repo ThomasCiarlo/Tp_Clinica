@@ -2,6 +2,7 @@ import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { HomeComponent } from './component/home/home.component';
 import { LoginComponent } from './component/login/login.component';
+import { MiperfilComponent } from './component/miperfil/miperfil.component';
 import { RegisterComponent } from './component/register/register.component';
 import { AdminGuard } from './guards/admin/admin.guard';
 import { PacientesGuard } from './guards/pacientes.guard';
@@ -13,6 +14,7 @@ const routes: Routes =
     { path: 'home', component: HomeComponent },
     { path: 'registrar', component: RegisterComponent },
     { path: 'ingresar', component: LoginComponent },
+    { path: 'miperfil', component: MiperfilComponent },
     {
       path: 'usuarios', loadChildren: () => import('./modules/usuarios/usuarios.module').then(m => m.UsuariosModule),
       canActivate: [AdminGuard]

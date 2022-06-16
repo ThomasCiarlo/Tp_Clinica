@@ -2,8 +2,7 @@
     <div>
         <label for="especialidad" class="form-label">Selecciones la Espelicidad</label>
         <div class="form-check form-switch" *ngFor="let esp of this.serviceEspecialidad.especialidades">
-            <input class="form-check-input" type="radio" formControlName="especialidad" role="switch" value="{{esp}}" (change)="this.enviar(esp)">
-            <label class="form-check-label" for="flexSwitchCheckDefault">{{esp}}</label>
+            <button (click)="this.enviar(esp.descripcion)" class="btn btn-light m-2 d-flex"><img src="{{esp.imagen}}" alt="">{{esp.descripcion}}</button>
         </div>
     </div>
 </form>

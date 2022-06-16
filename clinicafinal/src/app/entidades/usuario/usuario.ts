@@ -8,7 +8,7 @@ export class Usuario {
         public obraSocial!: string;
         public mail!: string;
         public password!: string;
-        public imagenes!: string[];
+        public imagenes: string[] = [];
         public especialidad!: string;
         public tipo!: string;
         public habilitado!: boolean;

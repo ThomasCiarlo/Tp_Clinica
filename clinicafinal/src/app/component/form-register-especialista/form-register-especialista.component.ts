@@ -30,7 +30,8 @@ export class FormRegisterEspecialistaComponent implements OnInit {
       'mail': ['', Validators.compose([Validators.required, Validators.minLength(3), Validators.maxLength(100)])],
       'password': ['', Validators.compose([Validators.required, Validators.minLength(3), Validators.maxLength(15)])],
       'especialidad': ['', Validators.nullValidator],
-      'imagenuno': ['', Validators.nullValidator]
+      'imagenuno': ['', Validators.nullValidator],
+      'nuevaEspecialidad': ['', Validators.nullValidator],
     });
   }
 
@@ -46,14 +47,24 @@ export class FormRegisterEspecialistaComponent implements OnInit {
     this.user.password = password;
     this.user.mail = mail;
     this.user.especialidad = this.form.value.especialidad;
+    if(this.form.value.nuevaEspecialidad != "")
+      this.user.especialidad = this.form.value.nuevaEspecialidad
     this.user.imagenes = [this.imgUno];
     this.user.tipo = 'especialista';
     this.user.habilitado = false;
+    this.user.franjaHoraria = [];
+    this.user.franjaHoraria.push(0);
+    this.user.franjaHoraria.push(0);
 
     const errorlbl = document.getElementById("errorLogin");
     if (errorlbl != null)
       this.serviceLogin.registrar(this.user.mail, this.user.password)
-        .then((res) => {
+        .then((res) => {        
+          if(this.form.value.nuevaEspecialidad != "")
+          {
+            console.log(this.user.especialidad);
+            this.serviceRegister.crearEspecialidad(this.form.value.nuevaEspecialidad);
+          }
           this.serviceRegister.createUsuario(this.user);
           this.serviceRegister.createEspecialista(this.user.mail, this.user);
           this.seRegistroOk = true;
@@ -66,7 +77,6 @@ export class FormRegisterEspecialistaComponent implements OnInit {
   UploadImag(event: any)
   {
     this.imgUno = event?.target.files[0];
-    console.log(this.imgUno);
   }
 
   get nombre() { return this.form.get('nombre'); }

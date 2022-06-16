@@ -2,6 +2,7 @@
     <table class="table border border-4">
         <thead>
           <tr>
+            <th scope="col">Foto</th>
             <th scope="col">Nombre</th>
             <th scope="col">Apellido</th>
             <th scope="col">Especialidad</th>
@@ -9,6 +10,7 @@
         </thead>
         <tbody *ngFor="let item of this.ListaUsuarios">
           <tr>
+            <td><img src="{{item.imagenes[0]}}" alt=""></td>
             <td>{{item.nombre}}</td>
             <td>{{item.apellido}}</td>
             <td>{{item.especialidad}}</td>

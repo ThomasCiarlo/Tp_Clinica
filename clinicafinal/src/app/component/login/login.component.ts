@@ -81,34 +81,28 @@ export class LoginComponent implements OnInit {
 
   traerPacientes()
   {
-    let i = 0;
     this.arrayUsuario = [];
     this.serviceTraerDatos.getAllPacientes().subscribe(users =>{
        users.forEach(user =>{
           user.imagenes = [];
           this.serviceTraerDatos.traerImagenes(user.mail).then(url => {
           user.imagenes.push(url);
-        })
           this.arrayUsuario.push(user);
-          i++;
+        })
        })
     })
   }
   traerEspecialista()
   {
-    let i = 0;
-    this.arrayUsuario = [];
-    this.muestroSpiner = true;
+    this.arrayEspecialista = [];
     this.serviceTraerDatos.getAllEspecialista().subscribe(users =>{
        users.forEach(user =>{
           user.imagenes = [];
           this.serviceTraerDatos.traerImagenes(user.mail).then(url => {
           user.imagenes.push(url);
-        })
           this.arrayEspecialista.push(user);
-          i++;
+        })
        })
-       this.muestroSpiner = false;
     })
   }
 

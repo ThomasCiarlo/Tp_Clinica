@@ -8,8 +8,10 @@ body
     margin: 0px;
     min-height: 100vh;
     min-width: 100vh;
-    align-content: center;
 }
+
+html, body { height: 100%; }
+body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
 
 html, body { height: 100%; }
 body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }

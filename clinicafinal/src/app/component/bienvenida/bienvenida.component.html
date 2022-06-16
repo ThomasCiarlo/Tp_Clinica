@@ -9,12 +9,12 @@
         <div class="d-flex justify-content-center">
             <ul class="navbar-nav">
                 <li class="nav-item">
-                    <a class="nav-link" [routerLink]="['usuarios']">Usuarios</a>
+                    <a class="nav-link" [routerLink]="['usuarios']" *ngIf="this.usuarioConectado.tipo == 'admin'">Usuarios</a>
                 </li>              
             </ul>           
             <ul class="navbar-nav">
                 <li class="nav-item">
-                    <a class="nav-link" [routerLink]="['pacientes']">Turnos</a>
+                    <a class="nav-link" [routerLink]="['pacientes']" *ngIf="this.usuarioConectado.tipo == 'paciente'">Turnos</a>
                 </li>              
             </ul>
         </div>
@@ -33,6 +33,11 @@
         </div>
         <div class="collapse navbar-collapse justify-content-end" id="navbarNav" *ngIf="this.estaLogeado">
             <ul class="navbar-nav">
+                <li class="nav-item m-1">
+                    <a class="nav-link" [routerLink]="['miperfil']" role="button">MI PERFIL</a>
+                </li>          
+            </ul>     
+            <ul class="navbar-nav m-1">
                 <li class="nav-item">
                     <a class="nav-link" role="button" (click)="this.Desloguear()">Cerrar sesion</a>
                 </li>              

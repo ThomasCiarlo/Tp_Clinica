@@ -25,7 +25,7 @@ export class CalendarioturnosComponent implements OnInit {
     
   }
 
-  async TomarHorarioYDia(dia: number,hora: number)
+  async TomarHorarioYDia(dia: number,hora: string)
   {
     const turno = new Turno();
     turno.dia = dia;

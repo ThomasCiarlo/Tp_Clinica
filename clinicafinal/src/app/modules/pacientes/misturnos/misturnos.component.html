@@ -11,10 +11,6 @@
   </div>
 </div>
 
-<div class="d-flex justify-content-center">
-  <app-cancelarturno *ngIf="this.modalsCancelar"></app-cancelarturno>
-</div>
-
 <div class="d-flex column justify-content-center">
   <table class="table border border-4 m-2">
     <thead>
@@ -33,10 +29,39 @@
         <td>{{item.estado}}</td>
         <td>{{item.especialidad}}</td>
         <td>{{item.nombreApellidoEspecialista}}</td>
-        <td><button class="btn btn-danger" (click)="this.cancelar()" *ngIf="item.estado == 'PENDIENTE'">Cancelar Turno</button></td>
-        <td *ngIf="item.comentario !='' "><button type="button" class="btn btn-info">Ver comentarios</button></td>
+        <td><button class="btn btn-danger" (click)="this.openCancelar(templateCancelar,item)" *ngIf="item.estado == 'PENDIENTE'">Cancelar
+            Turno</button></td>
+        <td *ngIf="item.comentario !='' "><button type="button" class="btn btn-info" (click)="this.openComentario(templateComentario,item)">Ver comentarios</button></td>
         <td><button class="btn btn-success" *ngIf="item.estado == 'ATENDIDO'">Calificar Atencion</button></td>
       </tr>
     </tbody>
   </table>
 </div>
+
+<ng-template #templateCancelar>
+  <div class="modal-header">
+    <h4 class="modal-title" id="modal-basic-title">Cancelar Turno</h4>
+  </div>
+  <div class="modal-body text-center">
+    <label for="dateOfBirth">¿Porque cancela el turno?</label>
+    <div class="input-group">
+      <textarea class="form-control" aria-label="With textarea" name="comentario"
+        [(ngModel)]="this.comentario"></textarea>
+    </div>
+    <button type="button" class="btn btn-default" (click)="confirm()">Guardar</button>
+  </div>
+</ng-template>
+
+<ng-template #templateComentario>
+  <div class="modal-header">
+    <h4 class="modal-title" id="modal-basic-title">Cancelar Turno</h4>
+  </div>
+  <div class="modal-body text-center">
+    <label for="dateOfBirth">Comentario: </label>
+    <div class="input-group">
+      <textarea class="form-control" aria-label="With textarea" name="comentario"
+        [(ngModel)]="this.comentario" disabled="{{true}}"></textarea>
+    </div>
+    <button type="button" class="btn btn-default" (click)="this.bsModalRef?.hide()">Cerrar</button>
+  </div>
+</ng-template>

@@ -15,7 +15,9 @@ import { FiltradoPipe } from 'src/app/pipe/filtrado.pipe';
 import { FormsModule } from '@angular/forms';
 import { CancelarturnoComponent } from './modals/cancelarturno/cancelarturno.component';
 
-
+import {NgbModule } from '@ng-bootstrap/ng-bootstrap';
+import { ModalModule } from 'ngx-bootstrap/modal';
+import { BsModalService, BsModalRef } from 'ngx-bootstrap/modal';
 
 
 @NgModule({
@@ -34,6 +36,9 @@ import { CancelarturnoComponent } from './modals/cancelarturno/cancelarturno.com
     PacientesRoutingModule,
     ReactiveFormsModule,
     FormsModule,
-  ]
+    NgbModule,
+    ModalModule
+  ],
+  providers: [BsModalService],
 })
 export class PacientesModule { }

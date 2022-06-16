@@ -21,6 +21,7 @@ import { NoopAnimationsModule } from '@angular/platform-browser/animations';
 import { CaptchatComponent } from './component/captchat/captchat.component';
 
 import { FormsModule } from '@angular/forms';
+import { MiperfilComponent } from './component/miperfil/miperfil.component';
 
 @NgModule({
   declarations: [
@@ -34,6 +35,7 @@ import { FormsModule } from '@angular/forms';
     FormRegisterEspecialistaComponent,
     LoadingComponent,
     CaptchatComponent,
+    MiperfilComponent,
     
   ],
   imports: [

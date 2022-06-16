@@ -2,26 +2,20 @@
 
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 13.3.1.
 
-## Development server
+## Modo de registro
+![image](https://user-images.githubusercontent.com/40859090/174163552-024d041e-106d-4bd4-af6b-a5b98c1fa6eb.png)
 
-Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The application will automatically reload if you change any of the source files.
+<p> Es caso de ser un usuario le daremos click en el unico de usuario y completaremos los datos solicitados, una vez registrado necesitaremos verificar nuestro email</p>
+<p> Es caso de ser un especialista le daremos click en el unico de del doctor y completaremos los datos solicitados, una vez finalizado el registro
+necesitaremos la autorizacion del administrados para acceder</p>
 
-## Code scaffolding
 
-Run `ng generate component component-name` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module`.
+## Modo de solicitar un turno
+![image](https://user-images.githubusercontent.com/40859090/174164161-3d1fd2cf-84a2-4746-bc47-fbd4f78206f9.png)
 
-## Build
+<p> No dirijiremos al apartado de turnos donde podremos ver los turnos solicitados y agregar un nuevo turno</p>
 
-Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory.
+<p> una vez que estemos en nuevo turno, deberemos seleccionar la especialidad, nos listara los especialistas disponibles y luego los horarios disponibles de
+  ese especialista </p>
 
-## Running unit tests
-
-Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.io).
-
-## Running end-to-end tests
-
-Run `ng e2e` to execute the end-to-end tests via a platform of your choice. To use this command, you need to first add a package that implements end-to-end testing capabilities.
-
-## Further help
-
-To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI Overview and Command Reference](https://angular.io/cli) page.
+![image](https://user-images.githubusercontent.com/40859090/174164662-d4fb49c2-1992-4182-b2c1-1324d600f804.png)
